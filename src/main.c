@@ -42,7 +42,7 @@ void time(void)
 
 void qiege()
 {
-    FILE *fp=fopen("./人是_.lrc","rb");
+    FILE *fp=fopen("../song/人是_.lrc","rb");
   //  FILE *fp=fopen("./好春光.lrc","rb");
 
     if(fp == NULL)
@@ -75,7 +75,7 @@ int main(int argc, char const *argv[])
 { 
     memset(song_lrc,0,sizeof(song_lrc));
     qiege();
-    mplayer_play("./周深 - 人是_.mp3");
+    mplayer_play("../song/周深 - 人是_.mp3");
   // mplayer_play("./好春光.mp3");
     
     clear_screen();//清屏幕内容
