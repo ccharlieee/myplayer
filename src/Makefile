@@ -1,6 +1,6 @@
 cc=gcc
 exec=main
-obj=main.o start_mplayer.o console.o
+obj=main.o start_mplayer.o console.o  main1.o
 flags=-Wall
 $(exec):$(obj)
 	$(cc) $^ -o $@ $(flags)
