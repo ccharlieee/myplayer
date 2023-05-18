@@ -3,6 +3,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include "main1.h"
+#include "main2.h"
+
 
 int main(int argc, char const *argv[])
 {
@@ -16,12 +18,17 @@ int main(int argc, char const *argv[])
 
     if(i == 0)//子进程1
     {
-        main1();
+        while(1)
+        {
+           main1(); 
+        }
+        
         _exit(-1);
     }
     else if(i == 1)//子进程2
     {
-
+        main2();
+        _exit(-1);
     }
     else if(i == 2)//子进程3
     {

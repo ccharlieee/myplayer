@@ -5,6 +5,7 @@
 #include "console.h"*/
 #include "main1.h"
 
+char song_name[128];
 int song_time=0;
 struct lrc{
     int min;
@@ -13,10 +14,10 @@ struct lrc{
 }song_lrc[128];
 char *song_buf[128];
 int song_lrc_line = 0;
-
+int y=4;
 void print_lrc(void)
 { 
-    static int y=4;
+    
     cusor_moveto(30, 6);//光标移到 第4行，第20列
     set_fg_color(COLOR_RED);//设置字体颜色为红色
     if(song_time==((song_lrc[y].min)*60+(song_lrc[y].second)))
@@ -24,15 +25,45 @@ void print_lrc(void)
         cusor_moveto(30, 6);//光标移到 第4行，第20列
         printf("                                                 ");
         cusor_moveto(30, 6);//光标移到 第4行，第20列
+        set_fg_color(COLOR_WHITE);//设置字体颜色为红色
+        printf("%s",song_lrc[y-3].lr);
+
+        cusor_moveto(30, 7);//光标移到 第4行，第20列
+        printf("                                                 ");
+        cusor_moveto(30, 7);//光标移到 第4行，第20列
+        set_fg_color(COLOR_WHITE);//设置字体颜色为红色
+        printf("%s",song_lrc[y-2].lr);
+
+        cusor_moveto(30, 8);//光标移到 第4行，第20列
+        printf("                                                 ");
+        cusor_moveto(30, 8);//光标移到 第4行，第20列
+        set_fg_color(COLOR_WHITE);//设置字体颜色为红色
+        printf("%s",song_lrc[y-1].lr);
+
+        cusor_moveto(30, 9);//光标移到 第4行，第20列
+        printf("                                                 ");
+        cusor_moveto(30, 9);//光标移到 第4行，第20列
         set_fg_color(COLOR_RED);//设置字体颜色为红色
-        printf("%s",song_lrc[y].lr);
-         y++;
+        printf("%s",song_lrc[y++].lr);
+
+        cusor_moveto(30, 10);//光标移到 第4行，第20列
+        printf("                                                 ");
+        cusor_moveto(30, 10);//光标移到 第4行，第20列
+        set_fg_color(COLOR_WHITE);//设置字体颜色为红色
+        printf("%s",song_lrc[y].lr);  
+
+        cusor_moveto(30, 11);//光标移到 第4行，第20列
+        printf("                                                 ");
+        cusor_moveto(30, 11);//光标移到 第4行，第20列
+        set_fg_color(COLOR_WHITE);//设置字体颜色为红色
+        printf("%s",song_lrc[y+1].lr);      
+   
     }
 }
 void time(void)
 {
     
-    cusor_moveto(40, 5);//光标移到 第4行，第20列
+    cusor_moveto(39, 5);//光标移到 第4行，第20列
     set_fg_color(COLOR_WHITE);//设置字体颜色为红色
     printf("%02d:%02d",song_time/60,song_time%60);
     fflush(stdout);
@@ -72,31 +103,37 @@ void qiege()
     song_lrc_line =i-1;
     fclose(fp);
 }
-int main1()
-{ 
-    memset(song_lrc,0,sizeof(song_lrc));
-    qiege();
-    mplayer_play("../song/人是_.mp3");
-  // mplayer_play("./好春光.mp3");
-    
-    clear_screen();//清屏幕内容
-    cusor_moveto(35, 5);//光标移到 第4行，第20列
-    set_fg_color(COLOR_WHITE);//设置字体颜色为红色
-    int i;
-    for(i=0;i<4;i++)
-    {
-        cusor_moveto(35, i+1);//光标移到 第4行，第20列
+int main1(void)
+{
+        mplayer_play("../song/人是_.mp3");
+        memset(song_lrc,0,sizeof(song_lrc));
+        qiege();
+        
+    // mplayer_play("./好春光.mp3");
+        
+        clear_screen();//清屏幕内容
+        cusor_moveto(35, 5);//光标移到 第4行，第20列
         set_fg_color(COLOR_WHITE);//设置字体颜色为红色
-        printf("%s\n",song_lrc[i].lr);
-    }
-   // printf("%d   %d",song_lrc[song_lrc_line].min,song_lrc[song_lrc_line].second);
-    //while(((song_lrc[song_lrc_line].min)*60+song_lrc[song_lrc_line].second) != song_time)
-    while(!(song_time/60==song_lrc[song_lrc_line].min && song_time%60 == song_lrc[song_lrc_line].second))
-    {
-        time();
-        print_lrc();       
-    }
-    printf("\n");
+        int i;
+        for(i=0;i<4;i++)
+        {
+            cusor_moveto(35, i+1);//光标移到 第4行，第20列
+            set_fg_color(COLOR_WHITE);//设置字体颜色为红色
+            printf("%s\n",song_lrc[i].lr);
+        }
+    // printf("%d   %d",song_lrc[song_lrc_line].min,song_lrc[song_lrc_line].second);
+        //while(((song_lrc[song_lrc_line].min)*60+song_lrc[song_lrc_line].second) != song_time)
+        while(!(song_time/60==song_lrc[song_lrc_line].min && song_time%60 == song_lrc[song_lrc_line].second))
+        {
+            time();
+            print_lrc();       
+        }
+        printf("\n");
+        song_time = 0;
+        song_lrc_line = 0;
+        y = 4;
+
+    
     return 0;  
 }
 
