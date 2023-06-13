@@ -12,14 +12,16 @@ struct lrc{
     int second;
     char lr[128];
 }song_lrc[128];
+
 char *song_buf[128];
 int song_lrc_line = 0;
-int y=4;
+int y=0;
 void print_lrc(void)
 { 
     
-    cusor_moveto(30, 6);//光标移到 第4行，第20列
-    set_fg_color(COLOR_RED);//设置字体颜色为红色
+  /* cusor_moveto(30, 6);//光标移到 第4行，第20列
+    set_fg_color(COLOR_RED);//设置字体颜色为红色*/
+    if(song_time < )
     if(song_time==((song_lrc[y].min)*60+(song_lrc[y].second)))
     {
         cusor_moveto(30, 6);//光标移到 第4行，第20列
@@ -58,6 +60,12 @@ void print_lrc(void)
         set_fg_color(COLOR_WHITE);//设置字体颜色为红色
         printf("%s",song_lrc[y+1].lr);      
    
+    }
+    int i=0;
+    while(song_lrc[i].lr != NULL)
+    {
+        printf("%d   %s\n",i ,song_lrc[i].lr);
+        i++;
     }
 }
 void time(void)
@@ -114,13 +122,16 @@ int main1(void)
         clear_screen();//清屏幕内容
         cusor_moveto(35, 5);//光标移到 第4行，第20列
         set_fg_color(COLOR_WHITE);//设置字体颜色为红色
-        int i;
+        /*int i;
         for(i=0;i<4;i++)
         {
             cusor_moveto(35, i+1);//光标移到 第4行，第20列
             set_fg_color(COLOR_WHITE);//设置字体颜色为红色
             printf("%s\n",song_lrc[i].lr);
-        }
+        }*/
+        cusor_moveto(37, 4);//光标移到 第4行，第20列
+        set_fg_color(COLOR_MAGENTA);//设置字体颜色为红色
+        printf("周深-人是_\n");
     // printf("%d   %d",song_lrc[song_lrc_line].min,song_lrc[song_lrc_line].second);
         //while(((song_lrc[song_lrc_line].min)*60+song_lrc[song_lrc_line].second) != song_time)
         while(!(song_time/60==song_lrc[song_lrc_line].min && song_time%60 == song_lrc[song_lrc_line].second))
@@ -131,7 +142,7 @@ int main1(void)
         printf("\n");
         song_time = 0;
         song_lrc_line = 0;
-        y = 4;
+        y = 0;
 
     
     return 0;  

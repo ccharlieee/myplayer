@@ -3,7 +3,8 @@
 void main2(void)
 {
     char buf[128];
-    
+    cusor_moveto(30, 20);//光标移到 第4行，第20列
+    printf("i am here \n");
 
     while(1)
     {
