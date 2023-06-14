@@ -27,6 +27,7 @@ int main(int argc, char const *argv[])
     }
     else if(i == 1)//子进程2
     {
+        sleep(1);
         main2();
         _exit(-1);
     }
