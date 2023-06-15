@@ -4,6 +4,7 @@ char *song_list[128];
 
 void get_song(void)
 {
+
     int i=0;
     FILE *fp=fopen("../song/song.txt","rb");
     while(1)
@@ -22,6 +23,7 @@ void get_song(void)
 void main2(void)
 {
     char buf[128] = "";
+
     cusor_moveto(30, 20);//光标移到 第4行，第20列
     printf("i am here \n");
 

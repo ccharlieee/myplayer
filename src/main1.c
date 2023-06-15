@@ -12,14 +12,16 @@ struct lrc{
     int second;
     char lr[128];
 }song_lrc[128];
+
 char *song_buf[128];
 int song_lrc_line = 0;
 int y=4;
 void print_lrc(void)
 { 
     
-    cusor_moveto(30, 6);//光标移到 第4行，第20列
-    set_fg_color(COLOR_RED);//设置字体颜色为红色
+  /* cusor_moveto(30, 6);//光标移到 第4行，第20列
+    set_fg_color(COLOR_RED);//设置字体颜色为红色*/
+    
     if(song_time==((song_lrc[y].min)*60+(song_lrc[y].second)))
     {
 
@@ -62,6 +64,7 @@ void print_lrc(void)
         y++;
    
     }
+
 }
 void time(void)
 {
@@ -114,6 +117,7 @@ int main1(void)
         clear_screen();
     // mplayer_play("./好春光.mp3");
         
+
         cusor_moveto(37, 4);//光标移到 第4行，第20列
         printf("                                                 ");
         cusor_moveto(37, 4);//光标移到 第4行，第20列
