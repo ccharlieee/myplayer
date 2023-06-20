@@ -4,4 +4,4 @@
 #include "start_mplayer.h"
 #include "console.h"
 
-int main1(void);
+int main1(char *buf);

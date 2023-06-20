@@ -8,6 +8,7 @@
 
 int main(int argc, char const *argv[])
 {
+    clear_screen();
     int i;
     for(i = 0; i < 3; i++)
     {
@@ -18,11 +19,8 @@ int main(int argc, char const *argv[])
 
     if(i == 0)//子进程1
     {
-        while(1)
-        {
-           main1(); 
-        }
-        
+        main1("请笃信一个梦"); 
+
         _exit(-1);
     }
     else if(i == 1)//子进程2

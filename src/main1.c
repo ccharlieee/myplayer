@@ -78,9 +78,11 @@ void time(void)
     return ;   
 }
 
-void qiege()
+void qiege(char *buf)
 {
-    FILE *fp=fopen("../song/人是_.lrc","rb");
+    char lrc_name[128] = "";
+    sprintf(lrc_name,"../song/%s.lrc",buf);
+    FILE *fp=fopen(lrc_name,"rb");
   //  FILE *fp=fopen("./好春光.lrc","rb");
 
     if(fp == NULL)
@@ -102,6 +104,7 @@ void qiege()
             if(*song_buf[i] == ']') song_buf[i]+=2;
             sscanf(song_buf[i],"%s",song_lrc[i].lr);
             
+
             //printf("%d:%d    %s\n",song_lrc[i].min,song_lrc[i].second,song_lrc[i].lr);
             i++;            
         }
@@ -109,11 +112,14 @@ void qiege()
     song_lrc_line =i-1;
     fclose(fp);
 }
-int main1(void)
+int main1(char* buf)
 {
-        mplayer_play("../song/人是_.mp3");
+    char song_name[128] = "";
+        sprintf(song_name,"../song/%s.mp3",buf);
+        printf("%s\n",song_name);
+        mplayer_play(song_name);
         memset(song_lrc,0,sizeof(song_lrc));
-        qiege();
+        qiege(buf);
         clear_screen();
     // mplayer_play("./好春光.mp3");
         
@@ -122,9 +128,9 @@ int main1(void)
         printf("                                                 ");
         cusor_moveto(37, 4);//光标移到 第4行，第20列
         set_fg_color(COLOR_MAGENTA);//设置字体颜色为红色
-        printf("周深-人是_\n");
+        printf("%s\n",buf);
 
-    // printf("%d   %d",song_lrc[song_lrc_line].min,song_lrc[song_lrc_line].second);
+        //printf("%d   %d",song_lrc[song_lrc_line].min,song_lrc[song_lrc_line].second);
         //while(((song_lrc[song_lrc_line].min)*60+song_lrc[song_lrc_line].second) != song_time)
         while(!(song_time/60==song_lrc[song_lrc_line].min && song_time%60 == song_lrc[song_lrc_line].second))
         {
